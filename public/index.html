@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Easy•As•API</title>
+    <style>
+      * { -moz-box-sizing: border-box; -webkit-box-sizing: border-box; box-sizing: border-box; }
+      html { font-size: 14px; }
+      body { font: 2rem/1.5 monospace; }
+      a { color: #036; }
+      a:hover { color: #369; }
+      .main { margin: auto; padding: 2vw; max-width: 2000px; }
+      p { color: #333; }
+      .projectName { color: #666; font-size: 2.5rem; font-weight: 300; line-height: 1.4; }
+      .projectName b { background: yellow; color: #000; font-weight: 600; padding: .2rem .4rem; }
+      .tagline { color: #999; font-size: 1.5rem; font-style: italic; vertical-align: middle; }
+      .directions { color: #999; font-style: italic; margin-top: 1.5em; }
+      input, textarea { color: #333; display: block; font: 1rem monospace; padding: 1rem; width: 100%; }
+      textarea { height: 10rem; }
+      .method { background: green; color: #fff; border-radius: 2px; padding: .5rem 1rem; }
+      button { cursor: pointer; font: 600 1.2rem monospace; padding: 1rem; }
+      button:hover { color: green; }
+      h2 { font-size: 1.5rem; line-height: 52px; }
+      label, .label { display: block; }
+      label { margin-bottom: 3rem; }
+      .label { color: #666; font-size: 1rem; letter-spacing: .1em; margin-bottom: .5em; text-transform: uppercase; }
+      .help { color: #999; font-size: 1rem; text-transform: none; }
+      .help a { color: inherit; }
+      .cols { border: 1px solid #ddd; display: flex; margin: 2vw 0; }
+      .col { flex: 1; }
+      .col--a { padding: 2rem 2rem 2rem; }
+      .col--b { background: #f1f1f1; padding: 2rem; }
+      textarea[name=response] { height: 22rem; }
+      input[name=sample_response_ct] { background: rgba(0,0,0,.05); color: #666; font-size: .8rem; margin-bottom: 1rem; }
+      .hidden { display: none; }
+
+      @media (max-width: 800px) {
+        .tagline, .cols { display: block; }
+        .tagline { margin: .5rem 0 2rem; }
+        .cols { border: 0 }
+        .col { background: none; padding: 0; }
+        textarea, textarea[name=response] { height: auto; min-height: 7rem; }
+      }
+    </style>
+  </head>
+  <body>
+    <main id="main" class="main">
+      <h1 class="projectName"><b>Easy•As•API</b> <span class="tagline">Create an API in seconds!</span></h1>
+      <div id="success" class="hidden">
+        <span class="method">GET</span>
+        <span class="method">POST</span>
+        <a href="" id="generatedUrl" target="_blank"></a>
+      </div>
+      <form id="form" method="post">
+        <div class="cols">
+          <div class="col col--a">
+            <label>
+              <div class="label">Response Template <span class="help">(see <a href="http://mozilla.github.io/nunjucks/templating.html" target="_blank">Nunjucks docs</a>)</span></div>
+              <textarea id="response" name="response">https://github.com/{{ user }}/{{ repo }}/issues/{{ id }}</textarea>
+            </label>
+          </div>
+          <div class="col col--b">
+            <label>
+              <div class="label">Sample Data</div>
+              <input type="text" id="sample_data" name="sample_data" value="user=cvan&amp;repo=smallrocks&amp;id=1">
+            </label>
+            <label>
+              <div class="label">Sample Response</div>
+              <input type="text" id="sample_response_ct" name="sample_response_ct" value="Content-Type: text/plain" readonly>
+              <textarea id="sample_response" name="sample_response" readonly>https://github.com/cvan/smallrocks/issues/1</textarea>
+            </label>
+          </div>
+        </div>
+        <p><button type="submit">Create an API</button></p>
+      </form>
+    </main>
+    <script src="js/nunjucks.min.js"></script>
+    <script src="js/main.js"></script>
+  </body>
+</html>
