@@ -19,7 +19,7 @@
   "homepage": "https://github.com/cvan/easy-as-api",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "npm run dev",
+    "start": "npm run prod",
     "prod": "NODE_ENVIRONMENT='production' node server",
     "dev": "NODE_ENVIRONMENT='development' nodemon server",
     "release": "release-it"
