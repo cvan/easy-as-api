@@ -1,5 +1,6 @@
 var bodyParser = require('body-parser');
 var express = require('express');
+var keenio = require('express-keenio');
 var morgan = require('morgan');
 var nunjucks = require('nunjucks');
 var redis = require('redis');
@@ -12,9 +13,23 @@ var NODE_ENV = process.env.NODE_ENVIRONMENT || 'development';
 var app = express();
 
 
+if (process.env.KEEN_API_URL) {
+  keenio.configure({
+    client: {
+      projectId: process.env.KEEN_PROJECT_ID,
+      writeKey: process.env.KEEN_WRITE_KEY
+    }
+  });
+
+  // Enable Express Middleware for Keen IO analytics.
+  app.use(keenio.handleAll());
+}
+
 app.use(morgan(NODE_ENV === 'development' ? 'dev' : 'combined'));
+
 app.use(express.static('public'));
 
+// For parsing text (used below).
 var textBodyParser = bodyParser.text();
 
 // For parsing JSON.
