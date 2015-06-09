@@ -10,6 +10,7 @@ var db = require('./lib/db');
 
 
 var NODE_ENV = process.env.NODE_ENVIRONMENT || 'development';
+var USE_SSL = process.env.USE_SSL;
 var app = express();
 
 
@@ -83,7 +84,7 @@ function detectType(body) {
 }
 
 function getHost(req) {
-  return (NODE_ENV === 'development' ? 'http://' : 'https://') + req.headers.host;
+  return (!USE_SSL || NODE_ENV === 'development' ? 'http://' : 'https://') + req.headers.host;
 }
 
 
