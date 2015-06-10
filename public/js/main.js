@@ -67,7 +67,7 @@ form.addEventListener('submit', function (e) {
       success.classList.remove('hidden');
       var uri = xhr.getResponseHeader('location');
       generatedUrl.textContent = uri;
-      generatedUrl.href = uri + (sampleData.value ? '?' + sampleData.value : '');
+      generatedUrl.href = uri;
     } else {
       console.error(Error(xhr.statusText));
     }
